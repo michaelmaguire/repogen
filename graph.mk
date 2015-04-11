@@ -14,24 +14,24 @@ $(TAGS)/5.1.4: $(TAGS)/5.1.3
 $(TAGS)/5.1.3: $(TAGS)/5.1.2
 $(TAGS)/5.1.2: $(TAGS)/5.1.1
 $(TAGS)/5.1.1: $(TAGS)/5.1
-$(TAGS)/5.1: $(TAGS)/5.0.2
+$(TAGS)/5.1:   $(TAGS)/5.0.2
 # TODO: branch for 5.0.3 (released after 5.1)
 $(TAGS)/5.0.2: $(TAGS)/5.0.1
 $(TAGS)/5.0.1: $(TAGS)/5.0
-$(TAGS)/5.0: $(TAGS)/4.0.1
+$(TAGS)/5.0:   $(TAGS)/4.0.1
 $(TAGS)/4.0.1: $(TAGS)/4.0
-$(TAGS)/4.0: $(TAGS)/3.2.2
+$(TAGS)/4.0:   $(TAGS)/3.2.2
 $(TAGS)/3.2.2: $(TAGS)/3.2.1
 $(TAGS)/3.2.1: $(TAGS)/3.2
-$(TAGS)/3.2: $(TAGS)/3.1
-$(TAGS)/3.1: $(TAGS)/3.0
-$(TAGS)/3.0: $(TAGS)/2.5
-$(TAGS)/2.5: $(TAGS)/2.4
-$(TAGS)/2.4: $(TAGS)/2.2
-$(TAGS)/2.2: $(TAGS)/2.1
-$(TAGS)/2.1: $(TAGS)/1.1
-$(TAGS)/1.1: $(TAGS)/1.0
-$(TAGS)/1.0: | repo/
+$(TAGS)/3.2:   $(TAGS)/3.1
+$(TAGS)/3.1:   $(TAGS)/3.0
+$(TAGS)/3.0:   $(TAGS)/2.5
+$(TAGS)/2.5:   $(TAGS)/2.4
+$(TAGS)/2.4:   $(TAGS)/2.2
+$(TAGS)/2.2:   $(TAGS)/2.1
+$(TAGS)/2.1:   $(TAGS)/1.1
+$(TAGS)/1.1:   $(TAGS)/1.0
+$(TAGS)/1.0:   | repo/
 
 $(TAGS)/5.3.0: export GIT_AUTHOR_DATE = 2015-01-06T12:00Z
 $(TAGS)/5.2.4: export GIT_AUTHOR_DATE = 2015-02-26T12:00Z
