@@ -8,6 +8,13 @@ VERSIONS = 1.0 1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0 4.0.1 \
 
 TARBALLS = $(addprefix lua-, $(addsuffix .tar.gz, $(VERSIONS)))
 
+# Commit date is fixed so that commit IDs stay the same
+export GIT_COMMITTER_DATE = 2015-04-12T00:00Z
+export GIT_COMMITTER_NAME = repogen
+export GIT_COMMITTER_EMAIL =
+export GIT_AUTHOR_NAME = Lua Team
+export GIT_AUTHOR_EMAIL = team@lua.org
+
 all: repo/.git/refs/tags/5.3.0
 
 repo/.git/refs/tags/%: lua-%/ | repo/
@@ -32,8 +39,7 @@ lua-%.tar.gz:
 
 repo/:
 	git init $@
-	cd $@ && git config user.name 'Lua Team'
-	cd $@ && git config user.email 'team at lua.org'
+	cd $@ && git remote add github git@github.com:lua/lua.git
 
 fetch: | $(TARBALLS)
 
