@@ -34,8 +34,7 @@ lua-%/: lua-%.tar.gz
 	touch $@
 
 lua-%.tar.gz:
-	@$(GET) http://www.lua.org/ftp/$@
-	@echo 'Fetched $@'
+	$(GET) http://www.lua.org/ftp/$@
 
 repo/:
 	git init $@
@@ -49,7 +48,10 @@ check: sha1sums.txt | $(TARBALLS)
 clean:
 	$(RM) -r repo lua-*/
 
+clean-all: clean
+	$(RM) lua-*.tar.gz
 
-.PHONY: all fetch check clean
+
+.PHONY: all fetch check clean clean-all
 .SECONDARY:
 .NOTPARALLEL:
