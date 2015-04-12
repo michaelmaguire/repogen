@@ -1,8 +1,3 @@
-TAGS     = repo/.git/refs/tags
-
-MOVEDIRS = $(addprefix lua-, $(addsuffix /, \
-           1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0))
-
 $(TAGS)/5.3.0: $(TAGS)/5.2.3
 # TODO: branch for 5.2.4 (released after 5.3.0)
 $(TAGS)/5.2.3: $(TAGS)/5.2.2
@@ -31,7 +26,7 @@ $(TAGS)/2.4:   $(TAGS)/2.2
 $(TAGS)/2.2:   $(TAGS)/2.1
 $(TAGS)/2.1:   $(TAGS)/1.1
 $(TAGS)/1.1:   $(TAGS)/1.0
-$(TAGS)/1.0:   | repo/
+$(TAGS)/1.0:   | $(REPO)/
 
 $(TAGS)/5.3.0: export GIT_AUTHOR_DATE = 2015-01-06T12:00Z
 $(TAGS)/5.2.4: export GIT_AUTHOR_DATE = 2015-02-26T12:00Z
