@@ -1,9 +1,8 @@
 include graph.mk
 
 GET         = curl -s -L -o $@
-TARIFY      = $(addprefix lua-, $(addsuffix .tar.gz, $(1)))
-TARBALLS    = $(call TARIFY, $(MAIN_VERSIONS))
-XTARBALLS   = $(call TARIFY, $(WORK_VERSIONS))
+TAR_GZ_MAIN = $(addprefix lua-, $(addsuffix .tar.gz, $(MAIN_VERSIONS)))
+TAR_GZ_WORK = $(addprefix lua-, $(addsuffix .tar.gz, $(WORK_VERSIONS)))
 
 # Commit date is fixed so that commit IDs stay the same
 export GIT_COMMITTER_DATE = 2015-04-12T00:00Z
@@ -30,20 +29,20 @@ lua-%/: lua-%.tar.gz
 	$(RM) -r TMP
 	touch $@
 
-$(TARBALLS): lua-%.tar.gz:
+$(TAR_GZ_MAIN): lua-%.tar.gz:
 	$(GET) http://www.lua.org/ftp/$@
 
-$(XTARBALLS): lua-%.tar.gz:
+$(TAR_GZ_WORK): lua-%.tar.gz:
 	$(GET) http://www.lua.org/work/old/$@
 
 $(REPO)/:
 	git init $@
 	cd $@ && git remote add github git@github.com:lua/lua.git
 
-fetch: | $(TARBALLS) $(XTARBALLS)
+fetch: | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 
 # Fetching lua-5.2.0-alpha-rc3.tar.gz currently returns "403 Forbidden"
-check: sha1sums.txt | $(TARBALLS) $(filter-out lua-5.2.0-alpha-rc3.tar.gz, $(XTARBALLS))
+check: sha1sums.txt | $(TAR_GZ_MAIN) $(filter-out lua-5.2.0-alpha-rc3.tar.gz, $(TAR_GZ_WORK))
 	sha1sum -c $<
 
 clean:
