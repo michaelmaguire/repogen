@@ -134,6 +134,10 @@ $(TAGS)/1.0:   | $(REPO)/
 #$(TAGS)/5.1.1-rc1:
 
 
+lua-1.1/ lua-2.1/ lua-2.2/ lua-2.4/ lua-2.5/: export TARDIR = lua
+lua-3.0/ lua-3.1/ lua-3.2/ lua-3.2.1/ lua-3.2.2/ lua-4.0/: export TARDIR = lua
+lua-5.1-rc1/ lua-5.1-rc2/ lua-5.1-rc3/ lua-5.1-rc4/: export TARDIR = lua-5.1
+
 $(TAGS)/5.3.0: export GIT_AUTHOR_DATE = 2015-01-06T12:00Z
 $(TAGS)/5.2.4: export GIT_AUTHOR_DATE = 2015-02-26T12:00Z
 $(TAGS)/5.2.3: export GIT_AUTHOR_DATE = 2013-11-11T12:00Z

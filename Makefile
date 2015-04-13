@@ -1,12 +1,9 @@
 include graph.mk
 
 GET         = curl -s -L -o $@
-DIRIFY      = $(addprefix lua-, $(addsuffix /, $(1)))
 TARIFY      = $(addprefix lua-, $(addsuffix .tar.gz, $(1)))
 TARBALLS    = $(call TARIFY, $(MAIN_VERSIONS))
 XTARBALLS   = $(call TARIFY, $(WORK_VERSIONS))
-UNTAR_LUA   = $(call DIRIFY, 1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0)
-UNTAR_LUA51 = $(call DIRIFY, 5.1-rc1 5.1-rc2 5.1-rc3 5.1-rc4)
 
 # Commit date is fixed so that commit IDs stay the same
 export GIT_COMMITTER_DATE = 2015-04-12T00:00Z
@@ -24,24 +21,13 @@ $(TAGS)/%: lua-%/ | $(REPO)/
 	git --git-dir=$(REPO)/.git commit -m 'Lua $*'
 	git --git-dir=$(REPO)/.git tag $*
 
-$(UNTAR_LUA): lua-%/: lua-%.tar.gz
-	test ! -e $@
-	tar xzf $<
-	mv lua $@
-	touch $@
-
-$(UNTAR_LUA51): lua-%/: lua-%.tar.gz
+lua-%/: lua-%.tar.gz
 	test ! -e $@
 	mkdir TMP
 	cp $< TMP
 	cd TMP && tar xzf $<
-	mv TMP/lua-5.1 $@
+	mv TMP/$${TARDIR:-$@} $@
 	$(RM) -r TMP
-	touch $@
-
-lua-%/: lua-%.tar.gz
-	test ! -e $@
-	tar xzf $<
 	touch $@
 
 $(TARBALLS): lua-%.tar.gz:
