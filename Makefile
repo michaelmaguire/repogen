@@ -20,9 +20,9 @@ $(TAGS)/%: lua-%/ | $(REPO)/
 	fi
 	rm -rf $(REPO)/*
 	cp -rf lua-$*/* $(REPO)
-	cd $(REPO) && git add .
-	git --git-dir=$(REPO)/.git commit -m 'Lua $*' --date="$(AUTHOR_DATE)"
-	git --git-dir=$(REPO)/.git tag -a -m 'Lua $*' $*
+	git -C $(REPO) add .
+	git -C $(REPO) commit -m 'Lua $*' --date="$(AUTHOR_DATE)"
+	git -C $(REPO) tag -a -m 'Lua $*' $*
 	cd $(REPO) && $(call ASSERT_HEAD, $*)
 
 lua-%/: lua-%.tar.gz
@@ -42,7 +42,7 @@ $(TAR_GZ_WORK): lua-%.tar.gz:
 
 $(REPO)/:
 	git init $@
-	cd $@ && git remote add github git@github.com:lua/lua.git
+	git -C $@ remote add github git@github.com:lua/lua.git
 
 fetch: | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 
