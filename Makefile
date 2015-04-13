@@ -1,6 +1,7 @@
 include graph.mk
 
 GET         = curl -s -L -o $@
+ASSERT_HEAD = test `git rev-parse $(1)^{}` = `git rev-parse HEAD`
 TAR_GZ_MAIN = $(addprefix lua-, $(addsuffix .tar.gz, $(MAIN_VERSIONS)))
 TAR_GZ_WORK = $(addprefix lua-, $(addsuffix .tar.gz, $(WORK_VERSIONS)))
 
@@ -14,11 +15,15 @@ export GIT_AUTHOR_EMAIL = team@lua.org
 all: $(TAGS)/5.3.0
 
 $(TAGS)/%: lua-%/ | $(REPO)/
+	if test $* != 1.0; then \
+	  cd $(REPO) && $(call ASSERT_HEAD, $(notdir $(word 2, $^))); \
+	fi
 	rm -rf $(REPO)/*
 	cp -rf lua-$*/* $(REPO)
 	cd $(REPO) && git add .
 	git --git-dir=$(REPO)/.git commit -m 'Lua $*' --date="$(AUTHOR_DATE)"
-	git --git-dir=$(REPO)/.git tag $*
+	git --git-dir=$(REPO)/.git tag -a -m 'Lua $*' $*
+	cd $(REPO) && $(call ASSERT_HEAD, $*)
 
 lua-%/: lua-%.tar.gz
 	test ! -e $@
