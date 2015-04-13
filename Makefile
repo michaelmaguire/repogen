@@ -1,14 +1,12 @@
-GET      = curl -s -L -o $@
-REPO     = repo
-TAGS     = $(REPO)/.git/refs/tags
-TARBALLS = $(addprefix lua-, $(addsuffix .tar.gz, $(VERSIONS)))
+include graph.mk
 
-VERSIONS = 1.0 1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0 4.0.1 \
-           5.0 5.0.1 5.0.2 5.0.3 5.1 5.1.1 5.1.2 5.1.3 5.1.4 5.1.5 \
-           5.2.0 5.2.1 5.2.2 5.2.3 5.2.4 5.3.0
-
-MOVEDIRS = $(addprefix lua-, $(addsuffix /, \
-           1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0))
+GET         = curl -s -L -o $@
+DIRIFY      = $(addprefix lua-, $(addsuffix /, $(1)))
+TARIFY      = $(addprefix lua-, $(addsuffix .tar.gz, $(1)))
+TARBALLS    = $(call TARIFY, $(MAIN_VERSIONS))
+XTARBALLS   = $(call TARIFY, $(WORK_VERSIONS))
+UNTAR_LUA   = $(call DIRIFY, 1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0)
+UNTAR_LUA51 = $(call DIRIFY, 5.1-rc1 5.1-rc2 5.1-rc3 5.1-rc4)
 
 # Commit date is fixed so that commit IDs stay the same
 export GIT_COMMITTER_DATE = 2015-04-12T00:00Z
@@ -26,25 +24,40 @@ $(TAGS)/%: lua-%/ | $(REPO)/
 	git --git-dir=$(REPO)/.git commit -m 'Lua $*'
 	git --git-dir=$(REPO)/.git tag $*
 
-$(MOVEDIRS): lua-%/: lua-%.tar.gz
+$(UNTAR_LUA): lua-%/: lua-%.tar.gz
+	test ! -e $@
 	tar xzf $<
 	mv lua $@
 	touch $@
 
+$(UNTAR_LUA51): lua-%/: lua-%.tar.gz
+	test ! -e $@
+	mkdir TMP
+	cp $< TMP
+	cd TMP && tar xzf $<
+	mv TMP/lua-5.1 $@
+	$(RM) -r TMP
+	touch $@
+
 lua-%/: lua-%.tar.gz
+	test ! -e $@
 	tar xzf $<
 	touch $@
 
-lua-%.tar.gz:
+$(TARBALLS): lua-%.tar.gz:
 	$(GET) http://www.lua.org/ftp/$@
+
+$(XTARBALLS): lua-%.tar.gz:
+	$(GET) http://www.lua.org/work/old/$@
 
 $(REPO)/:
 	git init $@
 	cd $@ && git remote add github git@github.com:lua/lua.git
 
-fetch: | $(TARBALLS)
+fetch: | $(TARBALLS) $(XTARBALLS)
 
-check: sha1sums.txt | $(TARBALLS)
+# Fetching lua-5.2.0-alpha-rc3.tar.gz currently returns "403 Forbidden"
+check: sha1sums.txt | $(TARBALLS) $(filter-out lua-5.2.0-alpha-rc3.tar.gz, $(XTARBALLS))
 	sha1sum -c $<
 
 clean:
@@ -54,7 +67,6 @@ clean-all: clean
 	$(RM) lua-*.tar.gz
 
 
-include graph.mk
 .PHONY: all fetch check clean clean-all
 .SECONDARY:
 .NOTPARALLEL:
