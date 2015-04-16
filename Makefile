@@ -14,7 +14,7 @@ export GIT_AUTHOR_EMAIL = team@lua.org
 
 all: $(TAGS)/5.3.0
 
-$(TAGS)/%: lua-%/ | $(REPO)/
+$(TAGS)/%: lua-%/
 	if test $* != 1.0; then \
 	  cd $(REPO) && $(call ASSERT_HEAD, $(notdir $(word 2, $^))); \
 	fi
@@ -27,7 +27,7 @@ $(TAGS)/%: lua-%/ | $(REPO)/
 	cd $(REPO) && $(call ASSERT_HEAD, $*)
 
 lua-%/: lua-%.tar.gz
-	test ! -e $@
+	$(RM) -r $@ TMP
 	mkdir TMP
 	cp $< TMP
 	cd TMP && tar xzf $<
