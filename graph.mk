@@ -22,13 +22,22 @@ WORK_VERSIONS = \
     5.3.0-work3 5.3.0-alpha 5.3.0-beta 5.3.0-rc0 5.3.0-rc1 5.3.0-rc2 \
     5.3.0-rc3 5.3.0-rc4
 
-$(TAGS)/5.3.0: $(TAGS)/5.2.3
-# TODO: branch for 5.2.4 (released after 5.3.0)
-$(TAGS)/5.2.3: $(TAGS)/5.2.2
+$(TAGS)/5.3.0: $(TAGS)/5.3.0-rc3
+# 5.3.0-rc4 == 5.3.0
+$(TAGS)/5.3.0-rc3: $(TAGS)/5.3.0-rc2
+$(TAGS)/5.3.0-rc2: $(TAGS)/5.3.0-rc1
+$(TAGS)/5.3.0-rc1: $(TAGS)/5.3.0-rc0
+$(TAGS)/5.3.0-rc0: $(TAGS)/5.3.0-beta
+$(TAGS)/5.3.0-beta: $(TAGS)/5.3.0-alpha
+$(TAGS)/5.3.0-alpha: $(TAGS)/5.3.0-work3
+$(TAGS)/5.3.0-work3: $(TAGS)/5.3.0-work2
+$(TAGS)/5.3.0-work2: $(TAGS)/5.3.0-work1
+$(TAGS)/5.3.0-work1: $(TAGS)/5.2.2
+# TODO: 5.2.3-rc1 --> 5.2.4 (branched at 5.2.2)
 $(TAGS)/5.2.2: $(TAGS)/5.2.1
 $(TAGS)/5.2.1: $(TAGS)/5.2.0
 $(TAGS)/5.2.0: $(TAGS)/5.1.4
-# TODO: branch for 5.1.5 (released after 5.2.0)
+# TODO: 5.1.5-rc1 --> 5.1.5 (branched at 5.1.4)
 $(TAGS)/5.1.4: $(TAGS)/5.1.4-rc2
 # 5.1.4-rc3 == 5.1.4
 $(TAGS)/5.1.4-rc2: $(TAGS)/5.1.4-rc1
@@ -64,7 +73,7 @@ $(TAGS)/5.1-work3: $(TAGS)/5.1-work2
 $(TAGS)/5.1-work2: $(TAGS)/5.1-work1
 $(TAGS)/5.1-work1: $(TAGS)/5.1-work0
 $(TAGS)/5.1-work0: $(TAGS)/5.0.2
-# TODO: branch for 5.0.3 (released after 5.1)
+# TODO: 5.0.3 (branched at 5.0.2)
 $(TAGS)/5.0.2: $(TAGS)/5.0.1
 $(TAGS)/5.0.1: $(TAGS)/5.0
 $(TAGS)/5.0:   $(TAGS)/4.0.1
@@ -84,17 +93,7 @@ $(TAGS)/1.0:   | $(REPO)/
 
 # TODO:
 #$(TAGS)/5.2.4-rc1:
-#$(TAGS)/5.3.0-rc4:
-#$(TAGS)/5.3.0-rc3:
-#$(TAGS)/5.3.0-rc2:
-#$(TAGS)/5.3.0-rc1:
-#$(TAGS)/5.3.0-rc0:
-#$(TAGS)/5.3.0-beta:
-#$(TAGS)/5.3.0-alpha:
-#$(TAGS)/5.3.0-work3:
-#$(TAGS)/5.3.0-work2:
 #$(TAGS)/5.2.3-rc1:
-#$(TAGS)/5.3.0-work1:
 #$(TAGS)/5.2.2-rc4:
 #$(TAGS)/5.2.2-rc3:
 #$(TAGS)/5.2.2-rc2:
@@ -141,7 +140,9 @@ lua-5.1.1-rc1/ lua-5.1.1-rc2/ lua-5.1.1-rc3/ lua-5.1.1-rc4/: export TARDIR = lua
 lua-5.1.2-rc1/ lua-5.1.2-rc2/ lua-5.1.2-rc3/ lua-5.1.2-rc4/ lua-5.1.2-rc5/: export TARDIR = lua-5.1.2
 lua-5.1.3-rc1/ lua-5.1.3-rc2/ lua-5.1.3-rc3/ lua-5.1.3-rc4/ lua-5.1.3-rc5/: export TARDIR = lua-5.1.3
 lua-5.1.4-rc1/ lua-5.1.4-rc2/ lua-5.1.4-rc3/: export TARDIR = lua-5.1.4
+lua-5.3.0-rc0/ lua-5.3.0-rc1/ lua-5.3.0-rc2/ lua-5.3.0-rc3/: export TARDIR = lua-5.3.0
 
+$(TAGS)/5.3.0: private EXTRA_TAG = 5.3.0-rc4
 $(TAGS)/5.1.4: private EXTRA_TAG = 5.1.4-rc3
 $(TAGS)/5.1.3: private EXTRA_TAG = 5.1.3-rc5
 $(TAGS)/5.1.2: private EXTRA_TAG = 5.1.2-rc5
