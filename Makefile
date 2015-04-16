@@ -22,7 +22,8 @@ $(TAGS)/%: lua-%/ | $(REPO)/
 	cp -rf lua-$*/* $(REPO)
 	git -C $(REPO) add .
 	git -C $(REPO) commit -m 'Lua $*' --date="$(AUTHOR_DATE)"
-	git -C $(REPO) tag -a -m 'Lua $*' $*
+	git -C $(REPO) tag $*
+	test -z '$(EXTRA_TAG)' || git -C $(REPO) tag '$(EXTRA_TAG)'
 	cd $(REPO) && $(call ASSERT_HEAD, $*)
 
 lua-%/: lua-%.tar.gz
