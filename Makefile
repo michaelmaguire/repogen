@@ -31,7 +31,7 @@ lua-%/: lua-%.tar.gz
 	mkdir TMP
 	cp $< TMP
 	cd TMP && tar xzf $<
-	mv TMP/$${TARDIR:-$@} $@
+	mv TMP/$(or $(TARDIR),$@) $@
 	$(RM) -r TMP
 	touch $@
 
