@@ -47,8 +47,7 @@ $(REPO)/:
 
 fetch: | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 
-# Fetching lua-5.2.0-alpha-rc3.tar.gz currently returns "403 Forbidden"
-check: sha1sums.txt | $(TAR_GZ_MAIN) $(filter-out lua-5.2.0-alpha-rc3.tar.gz, $(TAR_GZ_WORK))
+check: sha1sums.txt | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 	sha1sum -c $<
 
 clean:
