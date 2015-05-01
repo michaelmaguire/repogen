@@ -1,3 +1,4 @@
+include check.mk
 include graph.mk
 
 GET         = curl -s -L -o $@
