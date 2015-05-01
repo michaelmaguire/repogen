@@ -34,9 +34,44 @@ $(TAGS)/5.3.0-work3: $(TAGS)/5.3.0-work2
 $(TAGS)/5.3.0-work2: $(TAGS)/5.3.0-work1
 $(TAGS)/5.3.0-work1: $(TAGS)/5.2.2
 # TODO: 5.2.3-rc1 --> 5.2.4 (branched at 5.2.2)
-$(TAGS)/5.2.2: $(TAGS)/5.2.1
-$(TAGS)/5.2.1: $(TAGS)/5.2.0
-$(TAGS)/5.2.0: $(TAGS)/5.1.4
+$(TAGS)/5.2.2: $(TAGS)/5.2.2-rc3
+$(TAGS)/5.2.2: private EXTRA_TAG = 5.2.2-rc4
+$(TAGS)/5.2.2-rc3: $(TAGS)/5.2.2-rc2
+$(TAGS)/5.2.2-rc2: $(TAGS)/5.2.2-rc1
+$(TAGS)/5.2.2-rc1: $(TAGS)/5.2.1
+$(TAGS)/5.2.1: $(TAGS)/5.2.1-rc3
+$(TAGS)/5.2.1: private EXTRA_TAG = 5.2.1-rc4
+$(TAGS)/5.2.1-rc3: $(TAGS)/5.2.1-rc2
+$(TAGS)/5.2.1-rc2: $(TAGS)/5.2.1-rc1
+$(TAGS)/5.2.1-rc1: $(TAGS)/5.2.1-work1
+$(TAGS)/5.2.1-work1: $(TAGS)/5.2.0
+$(TAGS)/5.2.0: $(TAGS)/5.2.0-rc7
+$(TAGS)/5.2.0: private EXTRA_TAG = 5.2.0-rc8
+$(TAGS)/5.2.0-rc7: $(TAGS)/5.2.0-rc6
+$(TAGS)/5.2.0-rc6: $(TAGS)/5.2.0-rc5
+$(TAGS)/5.2.0-rc5: $(TAGS)/5.2.0-rc4
+$(TAGS)/5.2.0-rc4: $(TAGS)/5.2.0-rc3
+$(TAGS)/5.2.0-rc3: $(TAGS)/5.2.0-rc2
+$(TAGS)/5.2.0-rc2: $(TAGS)/5.2.0-rc1
+$(TAGS)/5.2.0-rc1: $(TAGS)/5.2.0-beta
+$(TAGS)/5.2.0-beta: $(TAGS)/5.2.0-beta-rc6
+$(TAGS)/5.2.0-beta: private EXTRA_TAG = 5.2.0-beta-rc7
+$(TAGS)/5.2.0-beta-rc6: $(TAGS)/5.2.0-beta-rc5
+$(TAGS)/5.2.0-beta-rc5: $(TAGS)/5.2.0-beta-rc4
+$(TAGS)/5.2.0-beta-rc4: $(TAGS)/5.2.0-beta-rc3
+$(TAGS)/5.2.0-beta-rc3: $(TAGS)/5.2.0-beta-rc2
+$(TAGS)/5.2.0-beta-rc2: $(TAGS)/5.2.0-beta-rc1
+$(TAGS)/5.2.0-beta-rc1: $(TAGS)/5.2.0-alpha
+$(TAGS)/5.2.0-alpha: $(TAGS)/5.2.0-alpha-rc3
+$(TAGS)/5.2.0-alpha: private EXTRA_TAG = 5.2.0-alpha-rc4
+$(TAGS)/5.2.0-alpha-rc3: $(TAGS)/5.2.0-alpha-rc2
+$(TAGS)/5.2.0-alpha-rc2: $(TAGS)/5.2.0-alpha-rc1
+$(TAGS)/5.2.0-alpha-rc1: $(TAGS)/5.2.0-work5
+$(TAGS)/5.2.0-work5: $(TAGS)/5.2.0-work4
+$(TAGS)/5.2.0-work4: $(TAGS)/5.2.0-work3
+$(TAGS)/5.2.0-work3: $(TAGS)/5.2.0-work2
+$(TAGS)/5.2.0-work2: $(TAGS)/5.2.0-work1
+$(TAGS)/5.2.0-work1: $(TAGS)/5.1.4
 # TODO: 5.1.5-rc1 --> 5.1.5 (branched at 5.1.4)
 $(TAGS)/5.1.4: $(TAGS)/5.1.4-rc2
 # 5.1.4-rc3 == 5.1.4
@@ -91,47 +126,6 @@ $(TAGS)/2.1:   $(TAGS)/1.1
 $(TAGS)/1.1:   $(TAGS)/1.0
 $(TAGS)/1.0:   | $(REPO)/
 
-# TODO:
-#$(TAGS)/5.2.4-rc1:
-#$(TAGS)/5.2.3-rc1:
-#$(TAGS)/5.2.2-rc4:
-#$(TAGS)/5.2.2-rc3:
-#$(TAGS)/5.2.2-rc2:
-#$(TAGS)/5.2.2-rc1:
-#$(TAGS)/5.2.1-rc4:
-#$(TAGS)/5.2.1-rc3:
-#$(TAGS)/5.2.1-rc2:
-#$(TAGS)/5.2.1-rc1:
-#$(TAGS)/5.2.1-work1:
-#$(TAGS)/5.1.5-rc2:
-#$(TAGS)/5.1.5-rc1:
-#$(TAGS)/5.2.0-rc8:
-#$(TAGS)/5.2.0-rc7:
-#$(TAGS)/5.2.0-rc6:
-#$(TAGS)/5.2.0-rc5:
-#$(TAGS)/5.2.0-rc4:
-#$(TAGS)/5.2.0-rc3:
-#$(TAGS)/5.2.0-rc2:
-#$(TAGS)/5.2.0-rc1:
-#$(TAGS)/5.2.0-beta-rc7:
-#$(TAGS)/5.2.0-beta:
-#$(TAGS)/5.2.0-beta-rc6:
-#$(TAGS)/5.2.0-beta-rc5:
-#$(TAGS)/5.2.0-beta-rc4:
-#$(TAGS)/5.2.0-beta-rc3:
-#$(TAGS)/5.2.0-beta-rc2:
-#$(TAGS)/5.2.0-beta-rc1:
-#$(TAGS)/5.2.0-alpha-rc4:
-#$(TAGS)/5.2.0-alpha:
-#$(TAGS)/5.2.0-alpha-rc3:
-#$(TAGS)/5.2.0-alpha-rc2:
-#$(TAGS)/5.2.0-alpha-rc1:
-#$(TAGS)/5.2.0-work5:
-#$(TAGS)/5.2.0-work4:
-#$(TAGS)/5.2.0-work3:
-#$(TAGS)/5.2.0-work2:
-#$(TAGS)/5.2.0-work1:
-
 
 lua-1.1/ lua-2.1/ lua-2.2/ lua-2.4/ lua-2.5/: private TARDIR = lua
 lua-3.0/ lua-3.1/ lua-3.2/ lua-3.2.1/ lua-3.2.2/ lua-4.0/: private TARDIR = lua
@@ -141,6 +135,12 @@ lua-5.1.2-rc1/ lua-5.1.2-rc2/ lua-5.1.2-rc3/ lua-5.1.2-rc4/ lua-5.1.2-rc5/: priv
 lua-5.1.3-rc1/ lua-5.1.3-rc2/ lua-5.1.3-rc3/ lua-5.1.3-rc4/ lua-5.1.3-rc5/: private TARDIR = lua-5.1.3
 lua-5.1.4-rc1/ lua-5.1.4-rc2/ lua-5.1.4-rc3/: private TARDIR = lua-5.1.4
 lua-5.3.0-rc0/ lua-5.3.0-rc1/ lua-5.3.0-rc2/ lua-5.3.0-rc3/: private TARDIR = lua-5.3.0
+
+lua-5.2.2-rc%/: private TARDIR = lua-5.2.2
+lua-5.2.1-rc%/: private TARDIR = lua-5.2.1
+lua-5.2.0-rc%/: private TARDIR = lua-5.2.0
+lua-5.2.0-beta-rc%/: private TARDIR = lua-5.2.0-beta
+lua-5.2.0-alpha-rc%/: private TARDIR = lua-5.2.0-alpha
 
 $(TAGS)/5.3.0: private EXTRA_TAG = 5.3.0-rc4
 $(TAGS)/5.1.4: private EXTRA_TAG = 5.1.4-rc3
