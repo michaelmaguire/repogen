@@ -60,7 +60,7 @@ check: sha1sums.txt | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 	sha1sum -c $<
 
 clean:
-	$(RM) -r $(REPO) lua-*/ github/
+	$(RM) -r $(REPO) lua-*/ TMP/ github/
 
 clean-all: clean
 	$(RM) -r tarballs/
