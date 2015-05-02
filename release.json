@@ -1,0 +1,7 @@
+{
+    "tag_name": "$TAGNAME",
+    "name": "Lua $TAGNAME",
+    "body": "",
+    "draft": false,
+    "prerelease": $PRERELEASE
+}

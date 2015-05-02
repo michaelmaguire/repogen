@@ -1,2 +1,5 @@
-repo/
 lua-*
+repo/
+github/
+.markers/
+.curl

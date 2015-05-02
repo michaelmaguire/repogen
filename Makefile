@@ -1,5 +1,6 @@
 include check.mk
 include graph.mk
+include github.mk
 
 GET         = curl -s -L -o $@
 ASSERT_HEAD = test `git rev-parse $(1)^{}` = `git rev-parse HEAD`
@@ -56,7 +57,7 @@ check: sha1sums.txt | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 	sha1sum -c $<
 
 clean:
-	$(RM) -r $(REPO) lua-*/
+	$(RM) -r $(REPO) lua-*/ github/
 
 clean-all: clean
 	$(RM) lua-*.tar.gz
