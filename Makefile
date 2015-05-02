@@ -4,8 +4,8 @@ include github.mk
 
 GET         = curl -s -L -o $@
 ASSERT_HEAD = test `git rev-parse $(1)^{}` = `git rev-parse HEAD`
-TAR_GZ_MAIN = $(addprefix lua-, $(addsuffix .tar.gz, $(MAIN_VERSIONS)))
-TAR_GZ_WORK = $(addprefix lua-, $(addsuffix .tar.gz, $(WORK_VERSIONS)))
+TAR_GZ_MAIN = $(addprefix tarballs/lua-, $(addsuffix .tar.gz, $(MAIN_VERSIONS)))
+TAR_GZ_WORK = $(addprefix tarballs/lua-, $(addsuffix .tar.gz, $(WORK_VERSIONS)))
 
 export GIT_COMMITTER_NAME = repogen
 export GIT_COMMITTER_EMAIL =
@@ -32,24 +32,27 @@ $(TAGS)/%: lua-%/
 	fi
 	cd $(REPO) && $(call ASSERT_HEAD, $*)
 
-lua-%/: lua-%.tar.gz
+lua-%/: tarballs/lua-%.tar.gz
 	$(RM) -r $@ TMP
 	mkdir TMP
 	cp $< TMP
-	cd TMP && tar xzf $<
+	cd TMP && tar xzf $(<F)
 	mv TMP/$(or $(TARDIR),$@) $@
 	$(RM) -r TMP
 	touch $@
 
-$(TAR_GZ_MAIN): lua-%.tar.gz:
-	$(GET) http://www.lua.org/ftp/$@
+$(TAR_GZ_MAIN): tarballs/lua-%.tar.gz: | tarballs/
+	$(GET) http://www.lua.org/ftp/$(@F)
 
-$(TAR_GZ_WORK): lua-%.tar.gz:
-	$(GET) http://www.lua.org/work/old/$@
+$(TAR_GZ_WORK): tarballs/lua-%.tar.gz: | tarballs/
+	$(GET) http://www.lua.org/work/old/$(@F)
 
 $(REPO)/:
 	git init $@
 	git -C $@ remote add github git@github.com:lua/lua.git
+
+tarballs/:
+	mkdir -p $@
 
 fetch: | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 
@@ -60,7 +63,7 @@ clean:
 	$(RM) -r $(REPO) lua-*/ github/
 
 clean-all: clean
-	$(RM) lua-*.tar.gz
+	$(RM) -r tarballs/
 
 
 .PHONY: all fetch check clean clean-all
