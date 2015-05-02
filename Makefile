@@ -6,8 +6,6 @@ ASSERT_HEAD = test `git rev-parse $(1)^{}` = `git rev-parse HEAD`
 TAR_GZ_MAIN = $(addprefix lua-, $(addsuffix .tar.gz, $(MAIN_VERSIONS)))
 TAR_GZ_WORK = $(addprefix lua-, $(addsuffix .tar.gz, $(WORK_VERSIONS)))
 
-# Commit date is fixed so that commit IDs stay the same
-export GIT_COMMITTER_DATE = 2015-04-12T00:00Z
 export GIT_COMMITTER_NAME = repogen
 export GIT_COMMITTER_EMAIL =
 export GIT_AUTHOR_NAME = Lua Team
@@ -16,13 +14,17 @@ export GIT_AUTHOR_EMAIL = team@lua.org
 all: $(TAGS)/5.3.0
 
 $(TAGS)/%: lua-%/
-	if test $* != 1.0; then \
+	@if test -z '$(RELEASE_DATE)'; then \
+	  echo 'Error: No RELEASE_DATE set for $*' >&2; \
+	  exit 1; \
+	fi
+	@if test '$*' != 1.0; then \
 	  cd $(REPO) && $(call ASSERT_HEAD, $(notdir $(word 2, $^))); \
 	fi
 	rm -rf $(REPO)/*
 	cp -rf lua-$*/* $(REPO)
 	git -C $(REPO) add .
-	git -C $(REPO) commit -m 'Lua $*' --date="$(AUTHOR_DATE)"
+	git -C $(REPO) commit -m 'Lua $*'
 	git -C $(REPO) tag -m 'Lua $*' $*
 	test -z '$(EXTRA_TAG)' || git -C $(REPO) tag -m 'Lua $*' $(EXTRA_TAG)
 	cd $(REPO) && $(call ASSERT_HEAD, $*)
