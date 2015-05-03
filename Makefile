@@ -12,7 +12,8 @@ export GIT_COMMITTER_EMAIL =
 export GIT_AUTHOR_NAME = Lua Team
 export GIT_AUTHOR_EMAIL = team@lua.org
 
-all: $(TAGS)/5.3.0
+all: $(TAGS)/5.3.0 $(TAGS)/5.2.4 $(TAGS)/5.1.5 $(TAGS)/5.0.3
+	git -C $(REPO) checkout master
 
 $(TAGS)/%: lua-%/
 	@if test -z '$(RELEASE_DATE)'; then \
@@ -31,6 +32,10 @@ $(TAGS)/%: lua-%/
 	  git -C $(REPO) tag -m 'Lua $(EXTRA_TAG)' $(EXTRA_TAG); \
 	fi
 	cd $(REPO) && $(call ASSERT_HEAD, $*)
+
+$(BRANCHES)/%:
+	git -C $(REPO) branch $* $(<F)
+	git -C $(REPO) checkout $*
 
 lua-%/: tarballs/lua-%.tar.gz
 	$(RM) -r $@ TMP
@@ -67,6 +72,7 @@ clean-all: clean
 	$(RM) -r tarballs/
 
 
+.DEFAULT_GOAL = all
 .PHONY: all fetch check clean clean-all
 .SECONDARY:
 .NOTPARALLEL:

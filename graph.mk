@@ -1,25 +1,25 @@
-REPO = repo
-TAGS = $(REPO)/.git/refs/tags
+REPO     = repo
+TAGS     = $(REPO)/.git/refs/tags
+BRANCHES = $(REPO)/.git/refs/heads
 
-# TODO: 5.0.3 5.1.5 5.2.3 5.2.4
 MAIN_VERSIONS = \
     1.0 1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0 4.0.1 5.0 5.0.1 \
-    5.0.2 5.1 5.1.1 5.1.2 5.1.3 5.1.4 5.2.0 5.2.1 5.2.2 5.3.0
+    5.0.2 5.0.3 5.1 5.1.1 5.1.2 5.1.3 5.1.4 5.1.5 5.2.0 5.2.1 5.2.2 5.2.3 \
+    5.2.4 5.3.0
 
-# TODO: 5.1.5-rc1 5.1.5-rc2 5.2.3-rc1 5.2.4-rc1
 WORK_VERSIONS = \
     5.1-work0 5.1-work1 5.1-work2 5.1-work3 5.1-work4 5.1-work5 \
     5.1-work6 5.1-alpha 5.1-beta 5.1-rc1 5.1-rc2 5.1-rc3 5.1-rc4 \
     5.1.1-rc1 5.1.1-rc2 5.1.1-rc3 5.1.1-rc4 5.1.2-rc1 5.1.2-rc2 5.1.2-rc3 \
     5.1.2-rc4 5.1.2-rc5 5.1.3-rc1 5.1.3-rc2 5.1.3-rc3 5.1.3-rc4 5.1.3-rc5 \
-    5.1.4-rc1 5.1.4-rc2 5.1.4-rc3 5.2.0-work1 \
+    5.1.4-rc1 5.1.4-rc2 5.1.4-rc3 5.2.0-work1 5.1.5-rc1 5.1.5-rc2 \
     5.2.0-work2 5.2.0-work3 5.2.0-work4 5.2.0-work5 5.2.0-alpha-rc1 \
     5.2.0-alpha-rc2 5.2.0-alpha-rc3 5.2.0-alpha-rc4 5.2.0-alpha \
     5.2.0-beta-rc1 5.2.0-beta-rc2 5.2.0-beta-rc3 5.2.0-beta-rc4 \
     5.2.0-beta-rc5 5.2.0-beta-rc6 5.2.0-beta-rc7 5.2.0-beta 5.2.0-rc1 \
     5.2.0-rc2 5.2.0-rc3 5.2.0-rc4 5.2.0-rc5 5.2.0-rc6 5.2.0-rc7 5.2.0-rc8 \
     5.2.1-work1 5.2.1-rc1 5.2.1-rc2 5.2.1-rc3 5.2.1-rc4 5.2.2-rc1 5.2.2-rc2 \
-    5.2.2-rc3 5.2.2-rc4 5.3.0-work1 5.3.0-work2 \
+    5.2.2-rc3 5.2.2-rc4 5.3.0-work1 5.3.0-work2 5.2.3-rc1 5.2.4-rc1 \
     5.3.0-work3 5.3.0-alpha 5.3.0-beta 5.3.0-rc0 5.3.0-rc1 5.3.0-rc2 \
     5.3.0-rc3 5.3.0-rc4
 
@@ -34,7 +34,7 @@ $(TAGS)/5.3.0-alpha: $(TAGS)/5.3.0-work3
 $(TAGS)/5.3.0-work3: $(TAGS)/5.3.0-work2
 $(TAGS)/5.3.0-work2: $(TAGS)/5.3.0-work1
 $(TAGS)/5.3.0-work1: $(TAGS)/5.2.2
-# TODO: 5.2.3-rc1 --> 5.2.4 (branched at 5.2.2)
+# Branch: 5.2.x (5.2.3-rc1 --> 5.2.4)
 $(TAGS)/5.2.2: $(TAGS)/5.2.2-rc3
 $(TAGS)/5.2.2: private EXTRA_TAG = 5.2.2-rc4
 $(TAGS)/5.2.2-rc3: $(TAGS)/5.2.2-rc2
@@ -73,7 +73,7 @@ $(TAGS)/5.2.0-work4: $(TAGS)/5.2.0-work3
 $(TAGS)/5.2.0-work3: $(TAGS)/5.2.0-work2
 $(TAGS)/5.2.0-work2: $(TAGS)/5.2.0-work1
 $(TAGS)/5.2.0-work1: $(TAGS)/5.1.4
-# TODO: 5.1.5-rc1 --> 5.1.5 (branched at 5.1.4)
+# Branch: 5.1.x (5.1.5-rc1 --> 5.1.5)
 $(TAGS)/5.1.4: $(TAGS)/5.1.4-rc2
 $(TAGS)/5.1.4: private EXTRA_TAG = 5.1.4-rc3
 $(TAGS)/5.1.4-rc2: $(TAGS)/5.1.4-rc1
@@ -109,7 +109,7 @@ $(TAGS)/5.1-work3: $(TAGS)/5.1-work2
 $(TAGS)/5.1-work2: $(TAGS)/5.1-work1
 $(TAGS)/5.1-work1: $(TAGS)/5.1-work0
 $(TAGS)/5.1-work0: $(TAGS)/5.0.2
-# TODO: 5.0.3 (branched at 5.0.2)
+# Branch: 5.0.x (5.0.3)
 $(TAGS)/5.0.2: $(TAGS)/5.0.1
 $(TAGS)/5.0.1: $(TAGS)/5.0
 $(TAGS)/5.0: $(TAGS)/4.0.1
@@ -127,6 +127,20 @@ $(TAGS)/2.1: $(TAGS)/1.1
 $(TAGS)/1.1: $(TAGS)/1.0
 $(TAGS)/1.0: | $(REPO)/
 
+$(BRANCHES)/5.2.x: $(TAGS)/5.2.2
+$(TAGS)/5.2.4: $(TAGS)/5.2.3
+$(TAGS)/5.2.4: private EXTRA_TAG = 5.2.4-rc1
+$(TAGS)/5.2.3: $(TAGS)/5.2.2 | $(BRANCHES)/5.2.x
+$(TAGS)/5.2.3: private EXTRA_TAG = 5.2.3-rc1
+
+$(BRANCHES)/5.1.x: $(TAGS)/5.1.4
+$(TAGS)/5.1.5: $(TAGS)/5.1.5-rc1
+$(TAGS)/5.1.5: private EXTRA_TAG = 5.1.5-rc2
+$(TAGS)/5.1.5-rc1: $(TAGS)/5.1.4 | $(BRANCHES)/5.1.x
+
+$(BRANCHES)/5.0.x: $(TAGS)/5.0.2
+$(TAGS)/5.0.3: $(TAGS)/5.0.2 | $(BRANCHES)/5.0.x
+
 # Most tarballs unpack into a directory with the same name, minus the
 # ".tar.gz" extension. These are overrides for the ones that don't.
 lua-5.3.0-rc%/: private TARDIR = lua-5.3.0
@@ -135,6 +149,7 @@ lua-5.2.1-rc%/: private TARDIR = lua-5.2.1
 lua-5.2.0-rc%/: private TARDIR = lua-5.2.0
 lua-5.2.0-beta-rc%/: private TARDIR = lua-5.2.0-beta
 lua-5.2.0-alpha-rc%/: private TARDIR = lua-5.2.0-alpha
+lua-5.1.5-rc%/: private TARDIR = lua-5.1.5
 lua-5.1.4-rc%/: private TARDIR = lua-5.1.4
 lua-5.1.3-rc%/: private TARDIR = lua-5.1.3
 lua-5.1.2-rc%/: private TARDIR = lua-5.1.2
@@ -257,3 +272,7 @@ $(TAGS)/2.2: private RELEASE_DATE = 1995-11-28
 $(TAGS)/2.1: private RELEASE_DATE = 1995-02-07
 $(TAGS)/1.1: private RELEASE_DATE = 1994-07-08
 $(TAGS)/1.0: private RELEASE_DATE = 1993-07-28
+
+$(BRANCHES)/5.2.x: private RELEASE_DATE = 2013-11-11
+$(BRANCHES)/5.1.x: private RELEASE_DATE = 2012-02-03
+$(BRANCHES)/5.0.x: private RELEASE_DATE = 2006-06-19
