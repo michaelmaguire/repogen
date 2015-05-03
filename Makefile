@@ -61,6 +61,7 @@ check: sha1sums.txt | $(TAR_GZ_MAIN) $(TAR_GZ_WORK)
 
 clean:
 	$(RM) -r $(REPO) lua-*/ TMP/
+	$(RM) releases/*-*.json releases/*.*.[12345].json
 
 clean-all: clean
 	$(RM) -r tarballs/

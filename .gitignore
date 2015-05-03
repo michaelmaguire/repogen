@@ -1,5 +1,7 @@
 *.tar.gz
 lua-*
+releases/*-*.json
+releases/*.*.[12345].json
 repo/
 .markers/
 .curl
