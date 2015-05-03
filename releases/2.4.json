@@ -1,7 +1,7 @@
 {
     "tag_name": "2.4",
     "name": "Lua 2.4",
-    "body": 'Lua 2.4 was released on 14 May 1996. Its main new features were the external compiler luac, an extended debug interface with hooks, and the "getglobal" fallback.',
+    "body": "Lua 2.4 was released on 14 May 1996. Its main new features were the external compiler luac, an extended debug interface with hooks, and the 'getglobal' fallback.",
     "draft": false,
     "prerelease": false
 }
