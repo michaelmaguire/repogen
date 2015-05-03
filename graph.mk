@@ -127,6 +127,8 @@ $(TAGS)/2.1: $(TAGS)/1.1
 $(TAGS)/1.1: $(TAGS)/1.0
 $(TAGS)/1.0: | $(REPO)/
 
+# Most tarballs unpack into a directory with the same name, minus the
+# ".tar.gz" extension. These are overrides for the ones that don't.
 lua-5.3.0-rc%/: private TARDIR = lua-5.3.0
 lua-5.2.2-rc%/: private TARDIR = lua-5.2.2
 lua-5.2.1-rc%/: private TARDIR = lua-5.2.1
