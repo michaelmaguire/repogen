@@ -1,0 +1,7 @@
+{
+    "tag_name": "1.1",
+    "name": "Lua 1.1",
+    "body": "Lua 1.1 was released on 08 Jul 1994. This was the first public release. Lua 1.1 already featured powerful data description constructs, simple syntax, and a bytecode virtual machine. Lua 1.1 was freely available for academic purposes; commercial uses had to be negotiated, but none ever were.",
+    "draft": false,
+    "prerelease": false
+}

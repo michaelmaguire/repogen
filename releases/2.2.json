@@ -1,0 +1,7 @@
+{
+    "tag_name": "2.2",
+    "name": "Lua 2.2",
+    "body": "Lua 2.2 was released on 28 Nov 1995. Its main new features were long strings, the debug interface, better stack tracebacks, extended syntax for function definition, garbage collection of functions, and support for pipes.",
+    "draft": false,
+    "prerelease": false
+}

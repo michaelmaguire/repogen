@@ -1,6 +1,5 @@
 *.tar.gz
 lua-*
 repo/
-github/
 .markers/
 .curl

@@ -1,0 +1,7 @@
+{
+    "tag_name": "3.2",
+    "name": "Lua 3.2",
+    "body": "Lua 3.2 was released on 08 Jul 1999. Its main new features were a debug library and new table functions.",
+    "draft": false,
+    "prerelease": false
+}

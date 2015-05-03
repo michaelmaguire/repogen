@@ -1,0 +1,7 @@
+{
+    "tag_name": "5.1",
+    "name": "Lua 5.1",
+    "body": "Lua 5.1 was released on 21 Feb 2006. Its main new features were a new module system, incremental garbage collection, new mechanism for varargs, new syntax for long strings and comments, mod and length operators, metatables for all types, new configuration scheme via luaconf.h, and a fully reentrant parser.",
+    "draft": false,
+    "prerelease": false
+}

@@ -1,24 +1,25 @@
 REPO = repo
 TAGS = $(REPO)/.git/refs/tags
 
+# TODO: 5.0.3 5.1.5 5.2.3 5.2.4
 MAIN_VERSIONS = \
     1.0 1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0 4.0.1 5.0 5.0.1 \
-    5.0.2 5.0.3 5.1 5.1.1 5.1.2 5.1.3 5.1.4 5.1.5 5.2.0 5.2.1 5.2.2 5.2.3 \
-    5.2.4 5.3.0
+    5.0.2 5.1 5.1.1 5.1.2 5.1.3 5.1.4 5.2.0 5.2.1 5.2.2 5.3.0
 
+# TODO: 5.1.5-rc1 5.1.5-rc2 5.2.3-rc1 5.2.4-rc1
 WORK_VERSIONS = \
     5.1-work0 5.1-work1 5.1-work2 5.1-work3 5.1-work4 5.1-work5 \
     5.1-work6 5.1-alpha 5.1-beta 5.1-rc1 5.1-rc2 5.1-rc3 5.1-rc4 \
     5.1.1-rc1 5.1.1-rc2 5.1.1-rc3 5.1.1-rc4 5.1.2-rc1 5.1.2-rc2 5.1.2-rc3 \
     5.1.2-rc4 5.1.2-rc5 5.1.3-rc1 5.1.3-rc2 5.1.3-rc3 5.1.3-rc4 5.1.3-rc5 \
-    5.1.4-rc1 5.1.4-rc2 5.1.4-rc3 5.1.5-rc1 5.1.5-rc2 5.2.0-work1 \
+    5.1.4-rc1 5.1.4-rc2 5.1.4-rc3 5.2.0-work1 \
     5.2.0-work2 5.2.0-work3 5.2.0-work4 5.2.0-work5 5.2.0-alpha-rc1 \
     5.2.0-alpha-rc2 5.2.0-alpha-rc3 5.2.0-alpha-rc4 5.2.0-alpha \
     5.2.0-beta-rc1 5.2.0-beta-rc2 5.2.0-beta-rc3 5.2.0-beta-rc4 \
     5.2.0-beta-rc5 5.2.0-beta-rc6 5.2.0-beta-rc7 5.2.0-beta 5.2.0-rc1 \
     5.2.0-rc2 5.2.0-rc3 5.2.0-rc4 5.2.0-rc5 5.2.0-rc6 5.2.0-rc7 5.2.0-rc8 \
     5.2.1-work1 5.2.1-rc1 5.2.1-rc2 5.2.1-rc3 5.2.1-rc4 5.2.2-rc1 5.2.2-rc2 \
-    5.2.2-rc3 5.2.2-rc4 5.2.3-rc1 5.2.4-rc1 5.3.0-work1 5.3.0-work2 \
+    5.2.2-rc3 5.2.2-rc4 5.3.0-work1 5.3.0-work2 \
     5.3.0-work3 5.3.0-alpha 5.3.0-beta 5.3.0-rc0 5.3.0-rc1 5.3.0-rc2 \
     5.3.0-rc3 5.3.0-rc4
 
@@ -145,18 +146,18 @@ lua-1.1/: private TARDIR = lua
 $(TAGS)/%: export GIT_COMMITTER_DATE = $(RELEASE_DATE)T12:00Z
 $(TAGS)/%: export GIT_AUTHOR_DATE = $(RELEASE_DATE)T12:00Z
 
-$(TAGS)/5.3.0: private RELEASE_DATE = 2015-01-06
+$(TAGS)/5.3.0: private RELEASE_DATE = 2015-01-12
 $(TAGS)/5.2.4: private RELEASE_DATE = 2015-02-26
 $(TAGS)/5.2.3: private RELEASE_DATE = 2013-11-11
 $(TAGS)/5.2.2: private RELEASE_DATE = 2013-03-21
 $(TAGS)/5.2.1: private RELEASE_DATE = 2012-06-08
-$(TAGS)/5.2.0: private RELEASE_DATE = 2011-12-12
+$(TAGS)/5.2.0: private RELEASE_DATE = 2011-12-16
 $(TAGS)/5.1.5: private RELEASE_DATE = 2012-02-13
 $(TAGS)/5.1.4: private RELEASE_DATE = 2008-08-18
 $(TAGS)/5.1.3: private RELEASE_DATE = 2008-01-21
 $(TAGS)/5.1.2: private RELEASE_DATE = 2007-03-29
 $(TAGS)/5.1.1: private RELEASE_DATE = 2006-06-07
-$(TAGS)/5.1: private RELEASE_DATE = 2006-02-20
+$(TAGS)/5.1: private RELEASE_DATE = 2006-02-21
 $(TAGS)/5.0.3: private RELEASE_DATE = 2006-06-19
 $(TAGS)/5.0.2: private RELEASE_DATE = 2004-03-17
 $(TAGS)/5.0.1: private RELEASE_DATE = 2003-11-25
@@ -166,13 +167,13 @@ $(TAGS)/4.0: private RELEASE_DATE = 2000-11-06
 $(TAGS)/3.2.2: private RELEASE_DATE = 2000-02-22
 $(TAGS)/3.2.1: private RELEASE_DATE = 1999-11-25
 $(TAGS)/3.2: private RELEASE_DATE = 1999-07-08
-$(TAGS)/3.1: private RELEASE_DATE = 1998-07-12
+$(TAGS)/3.1: private RELEASE_DATE = 1998-07-11
 $(TAGS)/3.0: private RELEASE_DATE = 1997-07-01
-$(TAGS)/2.5: private RELEASE_DATE = 1996-11-21
-$(TAGS)/2.4: private RELEASE_DATE = 1996-05-17
+$(TAGS)/2.5: private RELEASE_DATE = 1996-11-19
+$(TAGS)/2.4: private RELEASE_DATE = 1996-05-14
 $(TAGS)/2.2: private RELEASE_DATE = 1995-11-28
-$(TAGS)/2.1: private RELEASE_DATE = 1995-09-13
-$(TAGS)/1.1: private RELEASE_DATE = 1995-02-02
+$(TAGS)/2.1: private RELEASE_DATE = 1995-02-07
+$(TAGS)/1.1: private RELEASE_DATE = 1994-07-08
 $(TAGS)/1.0: private RELEASE_DATE = 1993-07-28
 
 $(TAGS)/5.2.4-rc1: private RELEASE_DATE = 2015-02-26

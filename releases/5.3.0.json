@@ -1,0 +1,7 @@
+{
+    "tag_name": "5.3.0",
+    "name": "Lua 5.3",
+    "body": "Lua 5.3 was released on 12 Jan 2015. Its main new features are integers, bitwise operators, a basic utf-8 library, and support for both 64-bit and 32-bit platforms.",
+    "draft": false,
+    "prerelease": false
+}
