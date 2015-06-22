@@ -106,3 +106,6 @@ fef32825392283c7561be61ae4c6af33ca7dacc1  tarballs/lua-5.3.0-rc1.tar.gz
 ce71e80a24d1232f42d3afbdc1b034b0877f532b  tarballs/lua-5.3.0-work1.tar.gz
 e52ea0acf4b2d7bf042f48bd01dddc149d517184  tarballs/lua-5.3.0-work2.tar.gz
 ea5061a02f7b9f526562cda21ffa6fcf8c2f1ea9  tarballs/lua-5.3.0-work3.tar.gz
+b0c84146fbb84a8409ff2b1011521519995a069f  tarballs/lua-5.3.1-rc1.tar.gz
+1676c6a041d90b6982db8cef1e5fb26000ab6dee  tarballs/lua-5.3.1-rc2.tar.gz
+1676c6a041d90b6982db8cef1e5fb26000ab6dee  tarballs/lua-5.3.1.tar.gz

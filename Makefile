@@ -12,7 +12,7 @@ export GIT_COMMITTER_EMAIL =
 export GIT_AUTHOR_NAME = Lua Team
 export GIT_AUTHOR_EMAIL = team@lua.org
 
-all: $(TAGS)/5.3.0 $(TAGS)/5.2.4 $(TAGS)/5.1.5 $(TAGS)/5.0.3
+all: $(TAGS)/5.3.1 $(TAGS)/5.2.4 $(TAGS)/5.1.5 $(TAGS)/5.0.3
 	git -C $(REPO) checkout master
 
 $(TAGS)/%: lua-%/
