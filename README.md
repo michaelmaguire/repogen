@@ -1,7 +1,7 @@
 repogen
 =======
 
-Downloads a full set of [Lua] release tarballs from <lua.org> and turns
+Downloads a full set of Lua release tarballs from [lua.org] and turns
 them into a [Git] commit history.
 
 Requirements
@@ -40,7 +40,7 @@ CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
 [License]: http://en.wikipedia.org/wiki/ISC_license "ISC License"
-[Lua]: http://www.lua.org/
+[lua.org]: http://www.lua.org/
 [GNU Make]: https://www.gnu.org/software/make/
 [Git]: https://git-scm.com/
 [Curl]: http://curl.haxx.se/
