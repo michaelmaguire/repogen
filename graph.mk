@@ -5,7 +5,7 @@ BRANCHES = $(REPO)/.git/refs/heads
 MAIN_VERSIONS = \
     1.0 1.1 2.1 2.2 2.4 2.5 3.0 3.1 3.2 3.2.1 3.2.2 4.0 4.0.1 5.0 5.0.1 \
     5.0.2 5.0.3 5.1 5.1.1 5.1.2 5.1.3 5.1.4 5.1.5 5.2.0 5.2.1 5.2.2 5.2.3 \
-    5.2.4 5.3.0 5.3.1
+    5.2.4 5.3.0 5.3.1 5.3.2
 
 WORK_VERSIONS = \
     5.1-work0 5.1-work1 5.1-work2 5.1-work3 5.1-work4 5.1-work5 \
@@ -21,8 +21,10 @@ WORK_VERSIONS = \
     5.2.1-work1 5.2.1-rc1 5.2.1-rc2 5.2.1-rc3 5.2.1-rc4 5.2.2-rc1 5.2.2-rc2 \
     5.2.2-rc3 5.2.2-rc4 5.3.0-work1 5.3.0-work2 5.2.3-rc1 5.2.4-rc1 \
     5.3.0-work3 5.3.0-alpha 5.3.0-beta 5.3.0-rc0 5.3.0-rc1 5.3.0-rc2 \
-    5.3.0-rc3 5.3.0-rc4 5.3.1-rc1 5.3.1-rc2 # 5.3.2-rc1
+    5.3.0-rc3 5.3.0-rc4 5.3.1-rc1 5.3.1-rc2 5.3.2-rc1 5.3.2-rc2
 
+$(TAGS)/5.3.2: $(TAGS)/5.3.2-rc1
+$(TAGS)/5.3.2: private EXTRA_TAG = 5.3.2-rc2
 $(TAGS)/5.3.2-rc1: $(TAGS)/5.3.1
 $(TAGS)/5.3.1: $(TAGS)/5.3.1-rc1
 $(TAGS)/5.3.1: private EXTRA_TAG = 5.3.1-rc2
@@ -170,6 +172,8 @@ $(TAGS)/%: export GIT_COMMITTER_DATE = $(RELEASE_DATE)T12:00Z
 $(TAGS)/%: export GIT_AUTHOR_DATE = $(RELEASE_DATE)T12:00Z
 
 # Orderered by date (leading indent marks non-linear versions)
+$(TAGS)/5.3.2: private RELEASE_DATE = 2015-11-30
+$(TAGS)/5.3.2-rc2: private RELEASE_DATE = 2015-11-25
 $(TAGS)/5.3.2-rc1: private RELEASE_DATE = 2015-11-18
 $(TAGS)/5.3.1: private RELEASE_DATE = 2015-06-17
 $(TAGS)/5.3.1-rc2: private RELEASE_DATE = 2015-06-10

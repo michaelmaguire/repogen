@@ -12,7 +12,7 @@ export GIT_COMMITTER_EMAIL =
 export GIT_AUTHOR_NAME = Lua Team
 export GIT_AUTHOR_EMAIL = team@lua.org
 
-all: $(TAGS)/5.3.2-rc1 $(TAGS)/5.2.4 $(TAGS)/5.1.5 $(TAGS)/5.0.3
+all: $(TAGS)/5.3.2 $(TAGS)/5.2.4 $(TAGS)/5.1.5 $(TAGS)/5.0.3
 	git -C $(REPO) checkout master
 
 $(TAGS)/%: lua-%/
@@ -51,11 +51,6 @@ $(TAR_GZ_MAIN): tarballs/lua-%.tar.gz: | tarballs/
 
 $(TAR_GZ_WORK): tarballs/lua-%.tar.gz: | tarballs/
 	$(GET) http://www.lua.org/work/old/$(@F)
-
-# This is the current work version and not yet available at lua.org/work/old/
-# TODO: Add "5.3.2-rc1" to WORK_VERSIONS
-tarballs/lua-5.3.2-rc1.tar.gz: | tarballs/
-	$(GET) http://www.lua.org/work/$(@F)
 
 $(REPO)/:
 	git init $@
