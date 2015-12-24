@@ -1,7 +1,0 @@
-{
-    "tag_name": "5.2.0",
-    "name": "Lua 5.2",
-    "body": "Lua 5.2 was released on 16 Dec 2011. Its main new features are yieldable pcall and metamethods, new lexical scheme for globals, ephemeron tables, new library for bitwise operations, light C functions, emergency garbage collector, goto statement, and finalizers for tables.",
-    "draft": false,
-    "prerelease": false
-}

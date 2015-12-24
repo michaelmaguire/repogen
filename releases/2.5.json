@@ -1,7 +1,0 @@
-{
-    "tag_name": "2.5",
-    "name": "Lua 2.5",
-    "body": "Lua 2.5 was released on 19 Nov 1996. Its main new features were pattern matching and vararg functions.",
-    "draft": false,
-    "prerelease": false
-}

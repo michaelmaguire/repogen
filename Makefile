@@ -1,6 +1,5 @@
-include check.mk
+include compat.mk
 include graph.mk
-include github.mk
 
 GET         = curl -s -L -o $@
 ASSERT_HEAD = test `git rev-parse $(1)^{}` = `git rev-parse HEAD`
@@ -34,8 +33,7 @@ $(TAGS)/%: lua-%/
 	cd $(REPO) && $(call ASSERT_HEAD, $*)
 
 $(BRANCHES)/%:
-	git -C $(REPO) branch $* $(<F)
-	git -C $(REPO) checkout $*
+	git -C $(REPO) checkout -b $* '$(<F)'
 
 lua-%/: tarballs/lua-%.tar.gz
 	$(RM) -r $@ TMP

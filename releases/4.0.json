@@ -1,7 +1,0 @@
-{
-    "tag_name": "4.0",
-    "name": "Lua 4.0",
-    "body": "Lua 4.0 was released on 06 Nov 2000. Its main new features were multiples states, a new API, for statements, and full speed execution with full debug information. Also, Lua 4.0 no longer has built-in functions: all functions in the standard library are written using the official API.",
-    "draft": false,
-    "prerelease": false
-}

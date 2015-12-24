@@ -1,7 +1,0 @@
-{
-    "tag_name": "2.1",
-    "name": "Lua 2.1",
-    "body": "Lua 2.1 was released on 07 Feb 1995. Its main new features were extensible semantics via fallbacks and support for object-oriented programming. Starting with Lua 2.1, Lua became freely available for all purposes, including commercial uses.",
-    "draft": false,
-    "prerelease": false
-}
