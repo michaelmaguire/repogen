@@ -45,10 +45,10 @@ lua-%/: tarballs/lua-%.tar.gz
 	touch $@
 
 $(TAR_GZ_MAIN): tarballs/lua-%.tar.gz: | tarballs/
-	$(GET) http://www.lua.org/ftp/$(@F)
+	$(GET) https://www.lua.org/ftp/$(@F)
 
 $(TAR_GZ_WORK): tarballs/lua-%.tar.gz: | tarballs/
-	$(GET) http://www.lua.org/work/old/$(@F)
+	$(GET) https://www.lua.org/work/old/$(@F)
 
 $(REPO)/:
 	git init $@

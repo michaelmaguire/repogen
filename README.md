@@ -39,8 +39,8 @@ OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
-[License]: http://en.wikipedia.org/wiki/ISC_license "ISC License"
-[lua.org]: http://www.lua.org/
+[License]: https://en.wikipedia.org/wiki/ISC_license "ISC License"
+[lua.org]: https://www.lua.org/
 [GNU Make]: https://www.gnu.org/software/make/
 [Git]: https://git-scm.com/
-[Curl]: http://curl.haxx.se/
+[Curl]: https://curl.haxx.se/
