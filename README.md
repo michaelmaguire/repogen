@@ -21,6 +21,14 @@ Install the *requirements* as above, then use the command:
 This will generate a git repository in the `repo/` directory, which
 takes approximately 30 seconds.
 
+Alternatively, download all versions of the lua engine test suite from http://www.lua.org/tests/ then run:
+
+    make tests
+
+This will generate a git repo in the `repo/` directory for the Lua test suites.
+    
+
+
 [License]
 ---------
 
